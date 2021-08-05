@@ -1,0 +1,95 @@
+﻿<Page x:Class="Tema3_School_Platform.Views.HeadTeacherStatusPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Tema3_School_Platform.Views"
+      xmlns:vm="clr-namespace:Tema3_School_Platform.ViewModels"
+      xmlns:convert="clr-namespace:Tema3_School_Platform.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1440"
+      Background="{StaticResource Background}"
+      Title="HeadTeacherStatusPage">
+
+    <Page.DataContext>
+        <vm:HeadTeacherStatusPageVM/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Page.Resources>
+
+    <Grid Margin="30" Background="{StaticResource Surface}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Style="{StaticResource RoundedCorners}" Height="40" Content="Hierarchy" FontSize="25" FontWeight="Bold" Margin="20,10" Padding="10,0"
+                         Command="{Binding MenuCommand}" CommandParameter="0"/>
+            <Button Style="{StaticResource RoundedCorners}" Height="40" Content="General status" FontSize="25" FontWeight="Bold" Margin="20,10" Padding="10,0"
+                         Command="{Binding MenuCommand}" CommandParameter="1"/>
+            <Button Style="{StaticResource RoundedCorners}" Height="40" Content="Exmatriculation" FontSize="25" FontWeight="Bold" Margin="20,10" Padding="10,0"
+                         Command="{Binding MenuCommand}" CommandParameter="2"/>
+        </StackPanel>
+        <ListBox Grid.Row="1" ItemsSource="{Binding HierarchyList}" Background="{StaticResource SurfaceDarker}" FontSize="25" Foreground="{StaticResource Text}" Padding="20,10" Width="1000"
+                 Visibility="{Binding Hierarchy, Converter={StaticResource BoolToVis}}"/>
+        <ListBox Grid.Row="1" ItemsSource="{Binding Exmatriculated}" Background="{StaticResource SurfaceDarker}" FontSize="25" Foreground="{StaticResource Text}" Padding="20,10" Width="1000"
+                 Visibility="{Binding Exmatriculation, Converter={StaticResource BoolToVis}}"/>
+        <Grid Grid.Row="1" Visibility="{Binding Status, Converter={StaticResource BoolToVis}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="First:" FontSize="30" Foreground="{StaticResource Text}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding First}"  Style="{StaticResource RoundedCorners}" Width="500" Height="60" FontSize="40" Margin="20,10" IsReadOnly="True"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Second:" FontSize="30" Foreground="{StaticResource Text}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Second}" Style="{StaticResource RoundedCorners}" Width="500" Height="60" FontSize="40" Margin="20,10" IsReadOnly="True"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Third:" FontSize="30" Foreground="{StaticResource Text}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Third}" Style="{StaticResource RoundedCorners}" Width="500" Height="60" FontSize="40" Margin="20,10" IsReadOnly="True"/>
+                </Grid>
+                <TextBlock Text="Mentiuni:" FontSize="40" Foreground="{StaticResource Text}"/>
+                <ListBox ItemsSource="{Binding Mentions}" Background="{StaticResource SurfaceDarker}" FontSize="25" Foreground="{StaticResource Text}" Height="336"/>
+            </StackPanel>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Corigenti" FontSize="40" Foreground="{StaticResource Text}" HorizontalContentAlignment="Center">
+                    <Label.LayoutTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="90" />
+                            <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+                        </TransformGroup>
+                    </Label.LayoutTransform>
+                </Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="Repetenti" FontSize="40" Foreground="{StaticResource Text}" HorizontalContentAlignment="Center">
+                    <Label.LayoutTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="90" />
+                            <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+                        </TransformGroup>
+                    </Label.LayoutTransform>
+                </Label>
+                <ListBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Corigents}" Background="{StaticResource SurfaceDarker}" FontSize="25" Foreground="{StaticResource Text}"/>
+                <ListBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Repeaters}" Background="{StaticResource SurfaceDarker}" FontSize="25" Foreground="{StaticResource Text}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

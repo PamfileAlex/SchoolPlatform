@@ -1,0 +1,38 @@
+﻿<Page x:Class="Tema3_School_Platform.Views.HeadTeacherFinalGradePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Tema3_School_Platform.Views"
+      xmlns:vm="clr-namespace:Tema3_School_Platform.ViewModels"
+      xmlns:convert="clr-namespace:Tema3_School_Platform.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1440"
+      Background="{StaticResource Background}"
+      Title="HeadTeacherFinalGradePage">
+
+    <Page.DataContext>
+        <vm:HeadTeacherFinalGradePageVM/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <convert:SelectedIndexToBoolConverter x:Key="SelectedIndexToBoolConverter"/>
+    </Page.Resources>
+
+    <StackPanel Margin="30" Background="{StaticResource Surface}">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <ComboBox Name="Subject" ItemsSource="{Binding Students}" DisplayMemberPath="Name" SelectedItem="{Binding Student}" Width="580" Height="60" FontSize="40" Margin="20,10"/>
+            <Button Style="{StaticResource RoundedCorners}" Width="150" Height="60" Content="Clear" FontSize="30" FontWeight="Bold" Margin="20,10"
+                        Command="{Binding ClearCommand}"/>
+        </StackPanel>
+        <DataGrid Name="DataGrid" ItemsSource="{Binding FinalGrades}" AutoGenerateColumns="False" IsReadOnly="True" Margin="30,30,30,10" Height="550" FontSize="30">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Student" Binding="{Binding StudentSubject.Student.Name}" Width="440"/>
+                <DataGridTextColumn Header="Subject" Binding="{Binding StudentSubject.Subject.Name}" Width="440"/>
+                <DataGridTextColumn Header="Semester" Binding="{Binding SemesterFormated}" Width="200"/>
+                <DataGridTextColumn Header="Grade" Binding="{Binding Value}" Width="200"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Text="{Binding GeneralGrade, StringFormat=General grade: {0}}" FontSize="40" Foreground="{StaticResource Text}" HorizontalAlignment="Center"/>
+    </StackPanel>
+</Page>

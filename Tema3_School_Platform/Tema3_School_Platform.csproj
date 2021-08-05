@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8D15275E-8443-4F7D-ADDF-5EEA17BAE472}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Tema3_School_Platform</RootNamespace>
+    <AssemblyName>Tema3_School_Platform</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\ActionCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\AbsenceConverter.cs" />
+    <Compile Include="Converters\GradeConverter.cs" />
+    <Compile Include="Converters\LoginConverter.cs" />
+    <Compile Include="Converters\SelectedIndexToBoolConverter.cs" />
+    <Compile Include="Converters\SelectedIndexToVisibilityConverter.cs" />
+    <Compile Include="Converters\StudentVisibilityConverter.cs" />
+    <Compile Include="Converters\SubjectSpecializationConverter.cs" />
+    <Compile Include="Converters\TeacherSubjectClassConverter.cs" />
+    <Compile Include="Converters\TeachingMaterialConverter.cs" />
+    <Compile Include="Converters\UserConverter.cs" />
+    <Compile Include="Converters\ProfessorVisibilityConverter.cs" />
+    <Compile Include="Exceptions\SchoolPlatformException.cs" />
+    <Compile Include="Models\BusinessLogicLayer\AbsenceBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ClassBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\FinalGradeBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\GradeBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\SpecializationBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\StudentSubjectBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\SubjectBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\SubjectSpecializationBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\TeacherSubjectClassBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\TeachingMaterialBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\UserBLL.cs" />
+    <Compile Include="Models\DataAccessLayer\AbsenceDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\ClassDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\DALHelper.cs" />
+    <Compile Include="Models\DataAccessLayer\FinalGradeDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\GradeDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\SpecializationDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\StudentSubjectDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\SubjectDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\SubjectSpecializationDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\TeacherSubjectClassDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\TeachingMaterialDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\UserDAL.cs" />
+    <Compile Include="Models\EntityLayer\Absence.cs" />
+    <Compile Include="Models\EntityLayer\Class.cs" />
+    <Compile Include="Models\EntityLayer\FinalGrade.cs" />
+    <Compile Include="Models\EntityLayer\Grade.cs" />
+    <Compile Include="Models\EntityLayer\Specialization.cs" />
+    <Compile Include="Models\EntityLayer\StudentSubject.cs" />
+    <Compile Include="Models\EntityLayer\Subject.cs" />
+    <Compile Include="Models\EntityLayer\SubjectSpecialization.cs" />
+    <Compile Include="Models\EntityLayer\TeacherSubjectClass.cs" />
+    <Compile Include="Models\EntityLayer\TeachingMaterial.cs" />
+    <Compile Include="Models\EntityLayer\User.cs" />
+    <Compile Include="Utils\BasePropertyChanged.cs" />
+    <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\ViewNavigator.cs" />
+    <Compile Include="ViewModels\AbsencePageVM.cs" />
+    <Compile Include="ViewModels\AdminPageVM.cs" />
+    <Compile Include="ViewModels\ClassPageVM.cs" />
+    <Compile Include="ViewModels\GradePageVM.cs" />
+    <Compile Include="ViewModels\HeadTeacherAbsencePageVM.cs" />
+    <Compile Include="ViewModels\HeadTeacherFinalGradePageVM.cs" />
+    <Compile Include="ViewModels\HeadTeacherStatusPageVM.cs" />
+    <Compile Include="ViewModels\HeadTeacherPageVM.cs" />
+    <Compile Include="ViewModels\StudentAbsencePageVM.cs" />
+    <Compile Include="ViewModels\StudentFinalGradePageVM.cs" />
+    <Compile Include="ViewModels\StudentGradePageVM.cs" />
+    <Compile Include="ViewModels\StudentTeachingMaterialPageVM.cs" />
+    <Compile Include="ViewModels\SubjectSpecializationPageVM.cs" />
+    <Compile Include="ViewModels\TeacherSubjectClassVM.cs" />
+    <Compile Include="ViewModels\TeachingMaterialPageVM.cs" />
+    <Compile Include="ViewModels\UserPageVM.cs" />
+    <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\LoginPageVM.cs" />
+    <Compile Include="ViewModels\ProfessorPageVM.cs" />
+    <Compile Include="ViewModels\StudentPageVM.cs" />
+    <Compile Include="Views\AbsencePage.xaml.cs">
+      <DependentUpon>AbsencePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassPage.xaml.cs">
+      <DependentUpon>ClassPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GradePage.xaml.cs">
+      <DependentUpon>GradePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HeadTeacherAbsencePage.xaml.cs">
+      <DependentUpon>HeadTeacherAbsencePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HeadTeacherFinalGradePage.xaml.cs">
+      <DependentUpon>HeadTeacherFinalGradePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HeadTeacherPage.xaml.cs">
+      <DependentUpon>HeadTeacherPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HeadTeacherStatusPage.xaml.cs">
+      <DependentUpon>HeadTeacherStatusPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentAbsencePage.xaml.cs">
+      <DependentUpon>StudentAbsencePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentFinalGradePage.xaml.cs">
+      <DependentUpon>StudentFinalGradePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentGradePage.xaml.cs">
+      <DependentUpon>StudentGradePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentTeachingMaterialPage.xaml.cs">
+      <DependentUpon>StudentTeachingMaterialPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherSubjectClassPage.xaml.cs">
+      <DependentUpon>TeacherSubjectClassPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeachingMaterialPage.xaml.cs">
+      <DependentUpon>TeachingMaterialPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfessorPage.xaml.cs">
+      <DependentUpon>ProfessorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubjectSpecializationPage.xaml.cs">
+      <DependentUpon>SubjectSpecializationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentPage.xaml.cs">
+      <DependentUpon>StudentPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\AbsencePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClassPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GradePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HeadTeacherAbsencePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HeadTeacherFinalGradePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HeadTeacherPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HeadTeacherStatusPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentAbsencePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentFinalGradePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentGradePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentTeachingMaterialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TeacherSubjectClassPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TeachingMaterialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfessorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SubjectSpecializationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

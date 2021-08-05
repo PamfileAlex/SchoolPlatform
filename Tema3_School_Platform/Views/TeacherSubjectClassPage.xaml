@@ -1,0 +1,79 @@
+﻿<Page x:Class="Tema3_School_Platform.Views.TeacherSubjectClassPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Tema3_School_Platform.Views"
+      xmlns:vm="clr-namespace:Tema3_School_Platform.ViewModels"
+      xmlns:convert="clr-namespace:Tema3_School_Platform.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1440"
+      Background="{StaticResource Background}"
+      Title="TeacherSubjectClassPage">
+
+    <Page.DataContext>
+        <vm:TeacherSubjectClassVM/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+        <convert:SelectedIndexToBoolConverter x:Key="SelectedIndexToBoolConverter"/>
+        <convert:TeacherSubjectClassConverter x:Key="TeacherSubjectClassConverter"/>
+    </Page.Resources>
+
+    <Grid Margin="30" Background="{StaticResource Surface}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0" Name="DataGrid" ItemsSource="{Binding TeacherSubjectClassList}" SelectedIndex="{Binding DataGridIndex}" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Teacher first name" Binding="{Binding Teacher.FirstName}" Width="120"/>
+                <DataGridTextColumn Header="Teacher Last name" Binding="{Binding Teacher.LastName}" Width="120"/>
+                <DataGridTextColumn Header="Subject" Binding="{Binding Subject.Name}" Width="140"/>
+                <DataGridTextColumn Header="Class" Binding="{Binding Class.Name}" Width="55"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Teacher:" FontSize="30" Foreground="{StaticResource Text}" VerticalAlignment="Center"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" Name="Teacher" ItemsSource="{Binding Teachers}" DisplayMemberPath="Name" SelectedIndex="{Binding TeacherIndex}"
+                          Style="{StaticResource RoundedCorners}" Width="600" Height="60" FontSize="40" Margin="20,10"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Class:" FontSize="30" Foreground="{StaticResource Text}" VerticalAlignment="Center"/>
+                <ComboBox Grid.Row="1" Grid.Column="1" Name="Class" ItemsSource="{Binding Classes}" DisplayMemberPath="Name" SelectedIndex="{Binding ClassIndex}"
+                          Style="{StaticResource RoundedCorners}" Width="600" Height="60" FontSize="40" Margin="20,10"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Subject:" FontSize="30" Foreground="{StaticResource Text}" VerticalAlignment="Center"/>
+                <ComboBox Grid.Row="2" Grid.Column="1" Name="Subject" ItemsSource="{Binding Subjects}" DisplayMemberPath="Name" SelectedIndex="{Binding SubjectIndex}"
+                          Style="{StaticResource RoundedCorners}" Width="600" Height="60" FontSize="40" Margin="20,10"
+                          IsEnabled="{Binding ElementName=Class, Path=SelectedIndex, Converter={StaticResource SelectedIndexToBoolConverter}}"/>
+            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="150">
+                <Button Style="{StaticResource RoundedCorners}" Width="150" Height="60" Content="Add" FontSize="30" FontWeight="Bold" Margin="20"
+                        Command="{Binding AddCommand}">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource TeacherSubjectClassConverter}">
+                            <Binding ElementName="Teacher" Path="SelectedItem"/>
+                            <Binding ElementName="Subject" Path="SelectedItem"/>
+                            <Binding ElementName="Class" Path="SelectedItem"/>
+                        </MultiBinding>
+                    </Button.CommandParameter>
+                </Button>
+                <Button Style="{StaticResource RoundedCorners}" Width="150" Height="60" Content="Remove" FontSize="30" FontWeight="Bold" Margin="20"
+                        IsEnabled="{Binding ElementName=DataGrid, Path=SelectedIndex, Converter={StaticResource SelectedIndexToBoolConverter}}"
+                        Command="{Binding RemoveCommand}" CommandParameter="{Binding ElementName=DataGrid, Path=SelectedItem}"/>
+                <Button Style="{StaticResource RoundedCorners}" Width="150" Height="60" Content="Clear" FontSize="30" FontWeight="Bold" Margin="20"
+                        Command="{Binding ClearCommand}"/>
+            </StackPanel>
+            <TextBlock Text="{Binding ErrorMessage}" FontSize="50" Foreground="Red" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Page>
